@@ -5,6 +5,7 @@
 const { test, describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('path');
+const os = require('os');
 const { HOST_OK, isPublicIP, sanitizeRange, resolveStaticPath } = require('../server.js');
 
 const ROOT = path.join(__dirname, '..');
@@ -154,9 +155,10 @@ describe('resolveStaticPath', () => {
   });
 
   it('отбрасывает выход за пределы произвольного root', () => {
-    const otherRoot = process.platform === 'win32' ? 'C:\\Windows\\system32' : '/etc';
+    // OS-агностичный root (path.relative лексичен — папка не обязана существовать)
+    const otherRoot = path.join(os.tmpdir(), 'sw-arbitrary-root-test');
     assert.equal(resolveStaticPath('/', otherRoot).ok, true, '/ → остаётся в root');
-    assert.equal(resolveStaticPath('/../../etc/passwd', otherRoot).ok, false, '../../etc/passwd уходит выше root');
+    assert.equal(resolveStaticPath('/../../escape.txt', otherRoot).ok, false, '../../escape.txt уходит выше root');
   });
 
   it('возвращает file-путь для валидных запросов', () => {
