@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: node --check
+        run: |
+          node --check server.js
+          node --check ios/patch-macho.js
+          node --check ios/make-ipa.js
+          node --check ios/gen-tbds.js
+          node --check ios/dump-macho.js
+      - name: Run tests
+        run: node --test

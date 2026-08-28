@@ -1,0 +1,28 @@
+# deps
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# iOS cross-build artifacts (regenerable: gen-tbds.js / patch-macho.js / make-ipa.js + Zig,
+# or via cloudbuild CI on macos)
+ios/dist/
+ios/*.o
+ios/SoundWave
+ios/SoundWave_mac
+ios/SoundWave_mac_orig
+ios/tbd/
+
+# packaged apps
+*.ipa
+*.tipa
+*.apk
+*.aab
+
+# editor
+.vscode/
+.idea/

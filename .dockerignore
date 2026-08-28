@@ -1,0 +1,13 @@
+ios/
+cloudbuild/
+node_modules/
+.git/
+*.md
+test/
+SECURITY_AUDIT.md
+CHAOS_REPORT.md
+*.ipa
+dist/
+SoundWave*
+tbd/
+*.o
