@@ -22,9 +22,10 @@ const fs = require('fs');
 const path = require('path');
 const net = require('net');
 const cp = require('child_process');
+const os = require('os');
 
-const SRC = 'C:\\Users\\User\\Desktop\\Новая папка (13)\\soundwave';
-const TMP_BASE = 'C:\\Users\\User\\AppData\\Local\\Temp\\opencode';
+const SRC = path.resolve(__dirname, '..');
+const TMP_BASE = os.tmpdir();
 
 const READY_TIMEOUT = 20000;   // 20с готовности (было 5с — флейк под нагрузкой)
 const POLL_INTERVAL = 200;     // опрос каждые 200мс

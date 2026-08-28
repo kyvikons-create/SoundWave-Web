@@ -8,8 +8,8 @@ const path = require('path');
 const os = require('os');
 const { execFileSync, spawnSync } = require('child_process');
 
-const IOS_DIR = 'C:\\Users\\User\\Desktop\\Новая папка (13)\\soundwave\\ios';
-const TMP_BASE = 'C:\\Users\\User\\AppData\\Local\\Temp\\opencode';
+const IOS_DIR = path.resolve(__dirname, '..');
+const TMP_BASE = os.tmpdir();
 
 const tmpDirs = [];
 function makeTmp() {
