@@ -107,9 +107,11 @@ describe('SoundWave e2e', () => {
     tmpDir = path.join(TMP_BASE, 'sw-e2e-' + process.pid + '-' + Date.now());
     fs.mkdirSync(tmpDir, { recursive: true });
 
-    // Копируем server.js + index.html один раз — изолируемся от гонки редактирования.
+    // Копируем server.js + index.html (shell) + style.css + app.js (модульная структура).
     fs.copyFileSync(path.join(SRC, 'server.js'), path.join(tmpDir, 'server.js'));
     fs.copyFileSync(path.join(SRC, 'index.html'), path.join(tmpDir, 'index.html'));
+    fs.copyFileSync(path.join(SRC, 'style.css'), path.join(tmpDir, 'style.css'));
+    fs.copyFileSync(path.join(SRC, 'app.js'), path.join(tmpDir, 'app.js'));
 
     // Копируем папку icons (если есть) — чтобы /icons/icon-192.png работал.
     let hasIcons = false;
